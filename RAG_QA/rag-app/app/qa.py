@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 load_dotenv()
 router = APIRouter()
 # replace with your openai-api-key
-openai.api_key = os.getenv("KEY")
+openai.api_key = os.getenv("API_KEY")
 
 @router.get("/ask/")
 def ask_question(query: str, db: Session = Depends(SessionLocal)):
