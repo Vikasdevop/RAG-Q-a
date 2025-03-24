@@ -1,12 +1,16 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 import openai
+import os
 from .database import SessionLocal
 from .retrieve import search_documents
+from dotenv import load_dotenv
 
+
+load_dotenv()
 router = APIRouter()
 # replace with your openai-api-key
-openai.api_key = "your-openai-api-key" 
+openai.api_key = os.getenv("KEY")
 
 @router.get("/ask/")
 def ask_question(query: str, db: Session = Depends(SessionLocal)):
